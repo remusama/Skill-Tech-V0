@@ -1,0 +1,64 @@
+import asyncio
+import json
+import websockets
+
+TOKEN = "8c24d9cc33181dfb3b22c08c4fa821a821289eba147c700dd5cb6579b8568b25"
+
+async def activar_expresion(nombre_expresion="Prueba exp3"):
+    async with websockets.connect("ws://localhost:8001") as ws:
+        print("✅ Conectado a VTube Studio")
+
+        # 1. Autenticar
+        auth_payload = {
+            "apiName": "VTubeStudioPublicAPI",
+            "apiVersion": "1.0",
+            "requestID": "auth-request",
+            "messageType": "AuthenticationRequest",
+            "data": {
+                "pluginName": "EleonorAI",
+                "pluginDeveloper": "JosueHF",
+                "authenticationToken": TOKEN
+            }
+        }
+        await ws.send(json.dumps(auth_payload))
+        auth_response = await ws.recv()
+        print("📩 Auth:", auth_response)
+
+        # 2. Pedir lista de hotkeys
+        hotkeys_request = {
+            "apiName": "VTubeStudioPublicAPI",
+            "apiVersion": "1.0",
+            "requestID": "hotkey-list",
+            "messageType": "HotkeysInCurrentModelRequest"
+        }
+        await ws.send(json.dumps(hotkeys_request))
+        hotkeys_response = await ws.recv()
+        hotkeys_data = json.loads(hotkeys_response)
+        print("📩 Hotkeys:", json.dumps(hotkeys_data, indent=2))
+
+        # Buscar el hotkey que coincida con el nombre
+        hotkey_id = None
+        for hk in hotkeys_data["data"]["availableHotkeys"]:
+            if hk["name"] == nombre_expresion:
+                hotkey_id = hk["hotkeyID"]
+                break
+
+        if not hotkey_id:
+            print(f"❌ No encontré la expresión '{nombre_expresion}'.")
+            return
+
+        # 3. Activar la expresión
+        trigger_payload = {
+            "apiName": "VTubeStudioPublicAPI",
+            "apiVersion": "1.0",
+            "requestID": "hotkey-exec",
+            "messageType": "HotkeyTriggerRequest",
+            "data": {
+                "hotkeyID": hotkey_id
+            }
+        }
+        await ws.send(json.dumps(trigger_payload))
+        trigger_response = await ws.recv()
+        print("📩 Trigger:", trigger_response)
+
+asyncio.run(activar_expresion())

@@ -1,0 +1,12 @@
+fastapi
+uvicorn[standard]
+openai
+python-dotenv
+pydantic
+websockets
+edge-tts
+sounddevice
+numpy
+pydub
+chromadb
+tiktoken

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Demo Chatbot Eleonor</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f4f4; }
+    .chat-container { width: 400px; margin: 40px auto; background: #fff; border-radius: 8px; box-shadow: 0 2px 8px #ccc; padding: 20px; }
+    .avatar { display: block; margin: 0 auto 10px auto; width: 120px; border-radius: 50%; }
+    .messages { height: 220px; overflow-y: auto; background: #eee; padding: 10px; border-radius: 6px; margin-bottom: 10px; }
+    .user { text-align: right; color: #333; margin: 6px 0; }
+    .bot { text-align: left; color: #0077cc; margin: 6px 0; }
+    .input-area { display: flex; }
+    input[type="text"] { flex: 1; padding: 8px; border-radius: 4px; border: 1px solid #ccc; }
+    button { padding: 8px 16px; border-radius: 4px; border: none; background: #0077cc; color: #fff; margin-left: 8px; cursor: pointer; }
+    button:hover { background: #005fa3; }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <img src="avatar.png" alt="Avatar Eleonor" class="avatar">
+    <div class="messages" id="messages">
+      <div class="bot">Hola, soy Eleonor. ¿En qué puedo ayudarte?</div>
+    </div>
+    <form class="input-area" onsubmit="sendMessage(event)">
+      <input type="text" id="userInput" placeholder="Escribe tu mensaje..." autocomplete="off" required>
+      <button type="submit">Enviar</button>
+    </form>
+  </div>
+  <script>
+    function sendMessage(e) {
+      e.preventDefault();
+      const input = document.getElementById('userInput');
+      const msg = input.value.trim();
+      if (!msg) return;
+      const messages = document.getElementById('messages');
+      messages.innerHTML += `<div class="user">${msg}</div>`;
+      // Simulación de respuesta del bot
+      setTimeout(() => {
+        messages.innerHTML += `<div class="bot">[Respuesta simulada de Eleonor]</div>`;
+        messages.scrollTop = messages.scrollHeight;
+      }, 700);
+      input.value = '';
+      messages.scrollTop = messages.scrollHeight;
+    }
+  </script>
+</body>

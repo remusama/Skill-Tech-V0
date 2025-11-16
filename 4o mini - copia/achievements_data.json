@@ -1,0 +1,32 @@
+{
+  "fisica_master": {
+    "name": "Maestría en Mecánica Clásica",
+    "description": "Obtuviste una puntuación perfecta en el examen de Física I. ¡Tu comprensión de las leyes del universo es impresionante!",
+    "category": "Ciencias",
+    "trigger": {
+      "type": "quiz",
+      "subtopic": "Física I: Mecánica Clásica",
+      "min_score": 100
+    }
+  },
+  "quimica_expert": {
+    "name": "Experto en Química Orgánica",
+    "description": "Lograste una puntuación excelente en Química Orgánica. ¡Los enlaces y las moléculas no tienen secretos para ti!",
+    "category": "Ciencias",
+    "trigger": {
+      "type": "quiz",
+      "subtopic": "Química Orgánica",
+      "min_score": 90
+    }
+  },
+  "first_steps_philosophy": {
+    "name": "Pensador Moderno",
+    "description": "Completaste tu primer examen de Filosofía Moderna. Un gran paso en el viaje del autoconocimiento.",
+    "category": "Humanidades",
+    "trigger": {
+      "type": "quiz",
+      "subtopic": "Filosofía Moderna",
+      "min_score": 70
+    }
+  }
+}

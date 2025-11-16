@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 33% 7%;
+    --foreground: 0 0% 100%;
+    --card: 240 19% 16%;
+    --card-foreground: 0 0% 100%;
+    --popover: 240 19% 16%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 272 100% 25%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 19% 16%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 240 19% 16%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 240 19% 16%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 19% 26%;
+    --input: 240 19% 26%;
+    --ring: 272 100% 25%;
+    --radius: 0.5rem;
+  }
+
+  .light-theme {
+    --background: 0 0% 90%; /* #E5E5E5 - Very light gray */
+    --foreground: 0 0% 24%; /* #3E3434 - Dark brown almost black */
+    --card: 220 20% 86%; /* #D5D9E3 - Soft grayish blue */
+    --card-foreground: 0 0% 24%; /* #3E3434 - Dark brown */
+    --popover: 220 20% 86%; /* #D5D9E3 - Soft grayish blue */
+    --popover-foreground: 0 0% 24%; /* #3E3434 - Dark brown */
+    --primary: 270 29% 50%; /* #7D5AA4 - Medium purple */
+    --primary-foreground: 0 0% 90%; /* #E5E5E5 - Very light gray */
+    --secondary: 280 29% 74%; /* #C1A9D2 - Pastel lavender */
+    --secondary-foreground: 0 0% 24%; /* #3E3434 - Dark brown */
+    --muted: 300 4% 65%; /* #AAA3A7 - Gray with lavender tint */
+    --muted-foreground: 0 0% 24%; /* #3E3434 - Dark brown */
+    --accent: 280 29% 74%; /* #C1A9D2 - Pastel lavender */
+    --accent-foreground: 0 0% 24%; /* #3E3434 - Dark brown */
+    --destructive: 0 84.2% 60.2%; /* Keeping original destructive color */
+    --destructive-foreground: 0 0% 98%; /* Keeping original destructive foreground */
+    --border: 280 29% 74%; /* #C1A9D2 - Pastel lavender */
+    --input: 280 29% 74%; /* #C1A9D2 - Pastel lavender */
+    --ring: 270 29% 50%; /* #7D5AA4 - Medium purple */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Added for the new design */
+@layer utilities {
+  @keyframes gradient-motion {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .gradient-motion {
+    @apply bg-[length:200%_200%] animate-[gradient-motion_15s_ease_infinite];
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .fade-in {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+}
+
+/* Estilos para el calendario */
+.calendar-event {
+  transition: all 0.2s ease-in-out;
+}
+
+.calendar-event:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: 60px repeat(7, 1fr);
+}
+
+.calendar-time-slot {
+  height: 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.calendar-day-column {
+  position: relative;
+  border-left: 1px solid var(--border);
+}
+
+.calendar-mini-day {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.calendar-mini-day:hover {
+  background-color: rgba(var(--primary), 0.1);
+}
+
+.calendar-mini-day.active {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.calendar-header {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.calendar-sidebar {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.calendar-popup {
+  animation: fadeInUp 0.3s ease-out forwards;
+}
+
+.react-draggable-dragging {
+  z-index: 1000;
+  opacity: 0.8;
+  cursor: grabbing !important;
+}
