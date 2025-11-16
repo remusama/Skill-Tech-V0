@@ -3,7 +3,6 @@
 VTS_API_URL = "ws://localhost:8001"
 OLLAMA_API_URL = "http://localhost:11434/api/generate"
 TTS_VOICE = "es-MX-DaliaNeural"
-LICHESS_TOKEN = "lip_CUIqXoQKQ58Psj8Kc1E7"
 STOCKFISH_PATH = r"C:\Games\necesidad\stockfish\stockfish.exe"
 
 # --- Configuración de Audio para Lip Sync ---
