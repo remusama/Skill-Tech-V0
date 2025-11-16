@@ -1,14 +1,40 @@
-# Node/Python/otros
+# Node.js / Next.js
 node_modules/
+.next/
+dist/
+out/
+build/
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 *.env
-*.json
-*.sqlite3
-*.db
+
+# Configs y secretos
+config.py
+*.json    # Solo si contienen secretos
 *.key
 *.pem
 *.token
-*.zip
-*.exe
+
+# Logs
+*.log
+
+# VSCode
 .vscode/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Comprimir archivos grandes
+*.zip
+*.tar.gz
+*.rar
+
+# Otros archivos temporales
+*.bak
+*.tmp

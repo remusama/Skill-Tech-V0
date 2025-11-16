@@ -1,0 +1,17 @@
+# Archivos de entorno y secretos
+*.env
+*.json        # si contiene tokens
+vts_token.json
+
+# Python
+__pycache__/
+*.pyc
+
+# Node/React / JavaScript
+node_modules/
+dist/
+
+# Archivos pesados, compilados o temporales
+*.zip
+*.exe
+*.log
