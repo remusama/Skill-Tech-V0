@@ -15,3 +15,8 @@ dist/
 *.zip
 *.exe
 *.log
+
+*.env
+*.pyc
+node_modules/
+4o mini - copia/config.py
